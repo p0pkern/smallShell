@@ -3,14 +3,18 @@
 # smallShell
 A small interactive shell written in C by Chris Peterman
 
-## Description
+## Table of Contents
+1. [Description](#description)
+2. [Installation](#installation)
+
+## Description {#description}
 This is a lightweight mock verison of shell written in the C language. It supports running foreground and background processes, file redirection, and three internal commands, status, cd, and exit.
 This was a class project that synthesized what I learned in the C language, as well as the process of forking, signal interrupts, directory navigation, and file redirection. It was challenging learning all the new concepts at once and implementing them in such a project, but I am extremely proud of the accomplishment and what I've created.
 
-## Installation
+## Installation {#installation}
 Download smallsh.c and the corresponding Makefile and place them in the same directory.
 
-## Running the program
+## Running the program {#run}
 
 ### Using the GCC Compiler (Recommended)
 
@@ -21,10 +25,10 @@ gcc -std=gnu99 -g -Wall -o smallsh smallsh.c
 ./smallsh
 ```
 
-## Usage
+## Usage {#usage}
 The smallShell supports all bash commands as well as its own internal commands. When the shell is running you will be prompted with : to indicate a command can be put on the line.
 
-### cd
+### cd {#cd}
 Change directory is an internal command that is modified in the following ways.
 
 Default cd will navigate to the $HOME directory on your system.
@@ -49,7 +53,7 @@ Entering a / or ./ in front of the directory name will search the current direct
 
 ```
 
-### status
+### status {#status}
 Typing in Status will return the exit status of the last foreground process. If the foreground process exited normally it will return 0, otherwise it will return 1 for abnormal termination.
 
 ```c
@@ -58,7 +62,7 @@ exit value 0
 : 
 ```
 
-### exit
+### exit {#exit}
 Exit will terminate all foreground and background processes and exit the program.
 
 ```c
@@ -66,17 +70,17 @@ Exit will terminate all foreground and background processes and exit the program
 
 ```
 
-### Foreground Processes
+### Foreground Processes {#foreground}
 Entering a legal bash command will start it running in the foreground. The shell will be paused until the currently running foreground process is completed.
 
 ```c
 : echo Hello World
 : ls -al
-: sleep(2)
+: sleep 2
 
 ```
 
-### Running a background process
+### Running a background process {#background}
 Adding a & at the end of the command will signal to smallShell that the process should be run in the background. When started the background process will signal with the pid and a message. Once the next command is entered after a background process has completed, smallShell will signal the user with a message and the corresponding pid that completed.
 
 ```c
@@ -89,7 +93,7 @@ background pid 23540 terminated: signal 0
 
 ```
 
-### Signal interrupts - Ctrl-c
+### Signal interrupts - Ctrl-c {#signal1}
 Entering SIGINT or Ctrl-c on the keyboard will terminate the current foreground process. The parent process and all background processes will ignore this signal.
 
 ```c
@@ -98,7 +102,7 @@ Entering SIGINT or Ctrl-c on the keyboard will terminate the current foreground 
 : 
 ```
 
-### Signal interrupts - Ctrl-z
+### Signal interrupts - Ctrl-z {#signal2}
 Entering SIGTSTP or Ctrl-z will cause the program to enter and leave foreground only mode. It will ignore all inputs for starting a background process with & and run every command in foreground mode. Entering and exiting foreground only mode will show a message.
 
 ```c
@@ -110,7 +114,7 @@ hello
 
 ```
 
-## License
+## License {#license}
 
 MIT License
 
