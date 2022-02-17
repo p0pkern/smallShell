@@ -29,19 +29,21 @@ Change directory is an internal command that is modified in the following ways.
 
 Default cd will navigate to the $HOME directory on your system.
 
-```
+```c
 : cd
 
 ```
 
 Entering a name will cause the program to search for a directory with that name from PATH, it will return an error if it is not found.
-```
+
+```c
 : cd myDirectory
 
 ```
 
 Entering a / or ./ in front of the directory name will search the current directory for the folder name it will return an error if it is not found.
-```
+
+```c
 : cd ./myDirectory
 : cd /myDirectory
 
@@ -50,7 +52,7 @@ Entering a / or ./ in front of the directory name will search the current direct
 ### status
 Typing in Status will return the exit status of the last foreground process. If the foreground process exited normally it will return 0, otherwise it will return 1 for abnormal termination.
 
-```
+```c
 : status
 exit value 0
 : 
@@ -59,7 +61,7 @@ exit value 0
 ### exit
 Exit will terminate all foreground and background processes and exit the program.
 
-```
+```c
 : exit
 
 ```
@@ -67,7 +69,7 @@ Exit will terminate all foreground and background processes and exit the program
 ### Foreground Processes
 Entering a legal bash command will start it running in the foreground. The shell will be paused until the currently running foreground process is completed.
 
-```
+```c
 : echo Hello World
 : ls -al
 : sleep(2)
@@ -77,7 +79,7 @@ Entering a legal bash command will start it running in the foreground. The shell
 ### Running a background process
 Adding a & at the end of the command will signal to smallShell that the process should be run in the background. When started the background process will signal with the pid and a message. Once the next command is entered after a background process has completed, smallShell will signal the user with a message and the corresponding pid that completed.
 
-```
+```c
 : sleep 5
 Starting Background Process for id: 23540
 : echo hello
@@ -90,7 +92,7 @@ background pid 23540 terminated: signal 0
 ### Signal interrupts - Ctrl-c
 Entering SIGINT or Ctrl-c on the keyboard will terminate the current foreground process. The parent process and all background processes will ignore this signal.
 
-```
+```c
 : sleep 4
 ^Cpid 23620 terminated: signal 2
 : 
@@ -99,8 +101,7 @@ Entering SIGINT or Ctrl-c on the keyboard will terminate the current foreground 
 ### Signal interrupts - Ctrl-z
 Entering SIGTSTP or Ctrl-z will cause the program to enter and leave foreground only mode. It will ignore all inputs for starting a background process with & and run every command in foreground mode. Entering and exiting foreground only mode will show a message.
 
-```
-
+```c
 :^ZForeground mode activated.
 echo hello
 hello
